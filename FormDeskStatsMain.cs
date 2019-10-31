@@ -1,6 +1,5 @@
 ﻿using APP_DeskStats.Functions;
 using DLL_Support;
-using IniParser.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,9 +17,9 @@ namespace APP_DeskStats
     public partial class Form1 : Form
     {
         internal int timerHide;
-        internal IniDataCaseInsensitive dataSettings;
+        //internal IniDataCaseInsensitive dataSettings;
         controlStats cStats = new controlStats();
-        controlSettings cS = new controlSettings();
+        //controlSettings cS = new controlSettings();
         List<modelLocation> lMl;
         private modelStat _mUd;
         string dirCommon;
@@ -66,14 +65,14 @@ namespace APP_DeskStats
             }
                 
             error = "";
-            dataSettings = cS.getSettings("Library Helper Suite", "DeskStats", "false", "STATS");
+            //dataSettings = cS.getSettings("Library Helper Suite", "DeskStats", "false", "STATS");
             lMl = new List<modelLocation>();
             mUd = new modelStat();
-            classFunctions cF = new classFunctions();
-            lMl = (List<modelLocation>)cStats.statControl(dataSettings, controlStats.getLocations, "STATS", "LoadForm",this, null, "", "", false, 0);
-            mUd= (modelStat)cStats.statControl(dataSettings, controlStats.getUserPreferences, "STATS", "LoadForm",this, null, "", "", true, 0);
-            lbLocation.Text = cF.locIDtoString(lMl, mUd.id_loc);
-            cF.setFormButtons(lMl, mUd.id_loc, this);
+            //classFunctions cF = new classFunctions();
+            //lMl = (List<modelLocation>)cStats.statControl(dataSettings, controlStats.getLocations, "STATS", "LoadForm",this, null, "", "", false, 0);
+            //mUd= (modelStat)cStats.statControl(dataSettings, controlStats.getUserPreferences, "STATS", "LoadForm",this, null, "", "", true, 0);
+            //lbLocation.Text = cF.locIDtoString(lMl, mUd.id_loc);
+            //cF.setFormButtons(lMl, mUd.id_loc, this);
             //this.Hide();
             //Icon icon = new Icon("piechart.ico");
            // notifyIcon1.Icon = icon;
@@ -84,16 +83,16 @@ namespace APP_DeskStats
 
         private void btChangeLoc_Click(object sender, EventArgs e)
         {
-            FormsetUserPreferences formSuP = new FormsetUserPreferences();
-            formSuP.lMl = lMl;
-            formSuP.dataSettings = dataSettings;
-            formSuP.upload = false;
-            formSuP.mU = mUd;
-            timer1.Stop();
-            formSuP.ShowDialog();
-            classFunctions cF = new classFunctions();
-            cF.setFormButtons(lMl, mUd.id_loc, this);
-            timer1.Start();
+            //FormsetUserPreferences formSuP = new FormsetUserPreferences();
+            //formSuP.lMl = lMl;
+            //formSuP.dataSettings = dataSettings;
+            //formSuP.upload = false;
+            //formSuP.mU = mUd;
+            //timer1.Stop();
+            //formSuP.ShowDialog();
+            //classFunctions cF = new classFunctions();
+            //cF.setFormButtons(lMl, mUd.id_loc, this);
+            //timer1.Start();
         }
 
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -198,16 +197,15 @@ namespace APP_DeskStats
 
         private void btnInputStats_Click(object sender, EventArgs e)
         {
-            frmInputStats fInputStats = new frmInputStats();
-            fInputStats.dataSettings = dataSettings;
-            fInputStats.mPs = mUd;
-            fInputStats.ShowDialog();
+            //frmInputStats fInputStats = new frmInputStats();
+            //fInputStats.dataSettings = dataSettings;
+           
         }
 
         private void btnGetStats_Click(object sender, EventArgs e)
         {
             frmGetStats fGetStats = new frmGetStats();
-            fGetStats.dataSettings = dataSettings;
+            //fGetStats.dataSettings = dataSettings;
             fGetStats.mPs = mUd;
             fGetStats.ShowDialog();
         }

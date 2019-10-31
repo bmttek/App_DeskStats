@@ -1,6 +1,6 @@
 ﻿namespace APP_DeskStats
 {
-    partial class FormsetUserPreferences
+    partial class FSettings
     {
         /// <summary>
         /// Required designer variable.
@@ -121,10 +121,6 @@
             this.settingAutoHideTimeout.Name = "settingAutoHideTimeout";
             this.settingAutoHideTimeout.Size = new System.Drawing.Size(208, 29);
             this.settingAutoHideTimeout.TabIndex = 7;
-            // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // btnCancel
             // 

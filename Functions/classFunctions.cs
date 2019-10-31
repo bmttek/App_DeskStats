@@ -11,7 +11,7 @@ using Image = iTextSharp.text.Image;
 
 namespace APP_DeskStats.Functions
 {
-    class classFunctions
+    class classFunctionsOld
     {
         public string locIDtoString(List<modelLocation> lMl, int id)
         {
@@ -53,25 +53,13 @@ namespace APP_DeskStats.Functions
             mPs.stat_type = (sender as Button).Text.Split('(')[0].Trim();
             if ((string)(sender as Button).Tag == "time")
             {
-                using (var frmComment = new frmGetComment())
-                {
-                    frmComment.valType = "number";
-                    frmComment.label1.Text = "Amount of time spent:";
-                    var result = frmComment.ShowDialog();
-                    mPs.stat_comment = frmComment.textBox1.Text;
-                }
+                
             }
             if ((string)(sender as Button).Tag == "string")
             {
-                using (var frmComment = new frmGetComment())
-                {
-                    frmComment.valType = "";
-                    frmComment.label1.Text = "Enter Comment:";
-                    var result = frmComment.ShowDialog();
-                    mPs.stat_comment = frmComment.textBox1.Text;
-                }
+                
             }
-            cStats.statControl(frmMain.dataSettings, controlStats.postStat, "STATS", "FormSetUserPreference", passedForm, null, mPs.stat_type, mPs.stat_comment, false, mPs.id_user);
+            //cStats.statControl(frmMain.dataSettings, controlStats.postStat, "STATS", "FormSetUserPreference", passedForm, null, mPs.stat_type, mPs.stat_comment, false, mPs.id_user);
             if (frmMain.BackColor == Color.Blue) { frmMain.BackColor = Color.White; }
             else if (frmMain.BackColor == Color.White) { frmMain.BackColor = Color.Blue; }
             string strCount = (sender as Button).Text.Split('(')[1].Replace(")",string.Empty);
@@ -133,39 +121,6 @@ namespace APP_DeskStats.Functions
             frmMain.Top = rightmost.WorkingArea.Bottom - frmMain.Height;
 
         }
-        public PdfPCell createImageCell(Image image, int widthBorder = 0, int hAlign=Element.ALIGN_LEFT, int vAlign=Element.ALIGN_TOP)
-        {
-            PdfPCell pCell = new PdfPCell();
-            pCell.AddElement(image);
-            pCell.HorizontalAlignment = hAlign;
-            pCell.VerticalAlignment = vAlign;
-            pCell.BorderWidthBottom = widthBorder;
-            pCell.BorderWidthLeft = widthBorder;
-            pCell.BorderWidthTop = widthBorder;
-            pCell.BorderWidthRight = widthBorder;
-            return pCell;
-        }
-        public PdfPCell createTextCell(string data, iTextSharp.text.Font font, BaseColor baseColor, float borderTop, float borderRight, float borderBottom, float borderLeft, int rowSpan=0, int rotation=0,int hAlign = Element.ALIGN_LEFT, int vAlign = Element.ALIGN_TOP, int columnSpan=0)
-        {
-            PdfPCell pCell = new PdfPCell(new Phrase(data,font));
-            pCell.HorizontalAlignment = hAlign;
-            pCell.VerticalAlignment = vAlign;
-            pCell.BorderWidthBottom = borderBottom;
-            pCell.BorderWidthLeft = borderLeft;
-            pCell.BorderWidthTop = borderTop;
-            pCell.BorderWidthRight = borderRight;
-            pCell.BackgroundColor = baseColor;
-            if (rowSpan > 0)
-            {
-                pCell.Rowspan = rowSpan;
-                pCell.NoWrap = true;
-            }
-            if (columnSpan > 0)
-            {
-                pCell.Colspan = columnSpan;
-            }
-            if(rotation > 0) { pCell.Rotation = rotation; }
-            return pCell;
-        }
+        
     }
 }

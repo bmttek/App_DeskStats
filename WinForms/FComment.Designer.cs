@@ -1,6 +1,6 @@
 ﻿namespace APP_DeskStats
 {
-    partial class frmGetComment
+    partial class FComment
     {
         /// <summary>
         /// Required designer variable.
@@ -91,7 +91,6 @@
             this.ShowInTaskbar = false;
             this.Text = "frmGetComment";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.frmGetComment_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

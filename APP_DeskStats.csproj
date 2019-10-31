@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>APP_DeskStats</RootNamespace>
     <AssemblyName>APP-DeskStats</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <PublishUrl>publish\</PublishUrl>
@@ -48,9 +48,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="INIFileParser">
-      <HintPath>..\Reference\IniFileParser\bin\Debug\INIFileParser.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -60,19 +57,17 @@
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntryPoints\ConsoleEntryPoint.cs" />
+    <Compile Include="EntryPoints\WinFormsEntryPoint.cs" />
+    <Compile Include="EntryPoints\WorkerEntryPoint.cs" />
     <Compile Include="FormDeskStatsMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>FormDeskStatsMain.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmGetComment.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmGetComment.Designer.cs">
-      <DependentUpon>frmGetComment.cs</DependentUpon>
     </Compile>
     <Compile Include="frmGetStats.cs">
       <SubType>Form</SubType>
@@ -80,32 +75,53 @@
     <Compile Include="frmGetStats.Designer.cs">
       <DependentUpon>frmGetStats.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmInputStats.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmInputStats.Designer.cs">
-      <DependentUpon>frmInputStats.cs</DependentUpon>
-    </Compile>
     <Compile Include="Functions\classFunctions.cs" />
+    <Compile Include="Helpers\ReportHelper.cs" />
+    <Compile Include="Helpers\StatsHelper.cs" />
+    <Compile Include="Module\CommonModule.cs" />
+    <Compile Include="Module\ConsoleModule.cs" />
+    <Compile Include="Module\WinFormsModule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="FormsetUserPreferences.cs">
+    <Compile Include="WinForms\FDesktop.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormsetUserPreferences.Designer.cs">
-      <DependentUpon>FormsetUserPreferences.cs</DependentUpon>
+    <Compile Include="WinForms\FDesktop.Designer.cs">
+      <DependentUpon>FDesktop.cs</DependentUpon>
     </Compile>
+    <Compile Include="WinForms\FComment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\FComment.Designer.cs">
+      <DependentUpon>FComment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\FGetStats.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\FGetStats.Designer.cs">
+      <DependentUpon>FGetStats.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\FInputStats.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\FInputStats.Designer.cs">
+      <DependentUpon>FInputStats.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForms\FSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForms\FSettings.Designer.cs">
+      <DependentUpon>FSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Worker\IWorkerService.cs" />
+    <Compile Include="Worker\WorkerContext.cs" />
+    <Compile Include="Worker\WorkerManager.cs" />
+    <Compile Include="Worker\WorkerService.cs" />
     <EmbeddedResource Include="FormDeskStatsMain.resx">
       <DependentUpon>FormDeskStatsMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmGetComment.resx">
-      <DependentUpon>frmGetComment.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmGetStats.resx">
       <DependentUpon>frmGetStats.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmInputStats.resx">
-      <DependentUpon>frmInputStats.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -117,8 +133,20 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="FormsetUserPreferences.resx">
-      <DependentUpon>FormsetUserPreferences.cs</DependentUpon>
+    <EmbeddedResource Include="WinForms\FDesktop.resx">
+      <DependentUpon>FDesktop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\FComment.resx">
+      <DependentUpon>FComment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\FGetStats.resx">
+      <DependentUpon>FGetStats.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\FInputStats.resx">
+      <DependentUpon>FInputStats.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForms\FSettings.resx">
+      <DependentUpon>FSettings.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -160,6 +188,28 @@
     <PackageReference Include="iTextSharp">
       <Version>5.5.13</Version>
     </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="Ninject">
+      <Version>3.3.4</Version>
+    </PackageReference>
+    <PackageReference Include="NLog">
+      <Version>4.6.7</Version>
+    </PackageReference>
+    <PackageReference Include="RestSharp">
+      <Version>106.6.10</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DLL_Support\DLL_Support.csproj">
+      <Project>{b25fb2ed-706b-441a-8b2e-0a4a53f9ba09}</Project>
+      <Name>DLL_Support</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LHS.Worker\LHS.Worker.csproj">
+      <Project>{1b9810ff-3dc2-48ff-b74e-bfa7c9699783}</Project>
+      <Name>LHS.Worker</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
